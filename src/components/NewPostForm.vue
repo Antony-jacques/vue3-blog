@@ -6,7 +6,11 @@
                 <label for="text">text</label>
             </div>
             <textarea v-model="content" name="text" id="text" cols="80" rows="10"></textarea>
-            <p>{{content}}</p>
+            <div>
+                <label for="image">image url</label>
+            </div>
+            <input v-model="imageUrl" type="text">
+            <p>{{imageUrl}}</p>
             <button type=submit>Enregistrer</button>
         
         </form>
@@ -20,9 +24,14 @@
     const emit = defineEmits(['submitedForm'])
 
     let content = ref('')
+    let imageUrl = ref('')
     function submitForm(){
         console.log('submit')
-        emit('submitedForm', content.value)
+        emit('submitedForm', {
+            content: content.value,
+            image: imageUrl.value
+            })
+        content.value = ''
     }
 
 
